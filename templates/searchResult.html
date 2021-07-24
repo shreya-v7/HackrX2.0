@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Corgeeky</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" href="img/bajaj.png">
+
+        <!--stylesheets-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+
+        <!--script tags-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <style>
+
+          body{
+            background-image: linear-gradient(to bottom, white, rgb(177, 171, 171), rgb(207, 207, 250),white, silver);
+          }
+
+          .search-card-row{
+  margin: 20px 90px 20px 90px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.search-card-column {
+ float: left;
+ width: 100%;
+}
+
+.search-card {
+ box-shadow: 0 4px 8px 10px rgba(190, 186, 186, 0.2); 
+ background-color: #ffffff;
+  border-radius: 10px;
+}
+
+.search-card:hover {
+ box-shadow: 0 4px 8px 10px rgba(34, 33, 33, 0.2); 
+ background-color: #ffffff;
+  border-radius: 10px;
+  transition: 0.5s;
+}
+
+.search-card-header{
+ background-color: #007bff;
+ border-bottom: 1px #79c5e7 solid;
+ padding: 2px 20px 0px 20px;
+ color: black;
+}
+
+.search-card-body{
+ padding: 5px 20px 20px 20px;
+}
+
+.search-card-button{
+ padding: 30px 0 10px 0;
+}
+
+.search-card-button a{
+ padding: 10px;
+ border: 2px solid #79c5e7;
+ color: white;
+ text-decoration: none;
+ border-radius: 10px;
+}
+
+.search-card-button a:hover{
+ padding: 10px;
+ border: 2px solid #79c5e7;
+ background-color: white;
+ color: black;
+ text-decoration: none;
+ border-radius: 10px;
+ transition: 0.5s;
+}
+
+.search-card-row:after {
+ content: "";
+ display: table;
+ clear: both;
+}
+@media screen and (max-width: 600px) {
+ .search-card-column {
+   width: 100%;
+   display: block;
+   margin-bottom: 20px;
+ }
+}
+
+.filter-check-box{
+  margin: 40px 0px 40px 0px;
+  padding: 10px;
+  display: flex;
+  font-size: 20px;
+  width: 100%;
+  justify-content: center;
+}
+
+.filter-check-box .check-box-group{
+  padding: 20px;
+}
+
+        </style>
+      </head> 
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="{{ url_for('home') }}"><img src="{{url_for('static', filename='img/bajajmarket.png')}}"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{{ url_for('home') }}">eStore</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="#">Loans</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="#">Insurance</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="#">Investments</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="#">Discover</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="#">Pocket Insurance & VAS</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <div class="nav-login">
+              <a class="nav-link text-dark" href="{{ url_for('login') }}">Login</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="nav-sign">
+                <a class="nav-link text-dark" href="{{ url_for('signup') }}">Sign Up</a>
+                </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <br><br><br><br><br>
+      <div class="input-group" style="width: 75%; margin-left: auto; margin-right: auto;">
+        <input type="search" placeholder="Search..." class="form-control" id="search_item">
+        <div class="input-group-append">
+          <div class="btn-group">
+            <button class="btn" type="submit" onclick="redirect()"><i class="fas fa-search"></i></button>
+          </div>
+        </div>
+      </div>
+
+<div class="filter-check-box">
+ 
+  <div class="check-box-group" id="check-box">
+    <input type="checkbox" id="loan" name="loan">&nbsp;&nbsp;Loan
+  </div>
+  <div class="check-box-group" id="check-box">
+    <input type="checkbox" id="investment" name="investment">&nbsp;&nbsp;Investments
+    </div>
+    <div class="check-box-group" id="check-box">
+    <input type="checkbox" id="emi" name="emi">&nbsp;&nbsp;EMI
+    </div>
+    <div class="check-box-group" id="check-box">
+    <input type="checkbox" id="remedies" name="remedies">&nbsp;&nbsp;Home Remedies
+    </div>
+  
+</div>
+{% if res %}
+{% for hit in res %}
+
+<div class="search-card-row">
+  <div class="search-card-column">
+    <div class="search-card">
+        <div class="search-card-header"><h2><a href="{{hit['_source']['link']}}" style="text-decoration:none; color:white; text-transform:capitalize;">{{ hit['_source']['title'] }}</a></h2></div>
+        <div class="search-card-body">
+            <p class="search-card-text"><span class="search-card-date" id="search-card-date"><b>{{hit['_source']['date_published']}}</b></span><br><i>Views:{{hit['_source']['views']}}</i></p>
+            <p class="search-card-text">{{hit['_source']['answer_description']}}</p>
+            <div class="search-card-button"><a href="{{hit['_source']['link']}}" target="_blank" class="btn btn-primary" style="text-decoration:none; ">Read More</a></div>
+        </div>
+    </div>
+  </div>
+</div>
+<br><br>
+
+<!-- <div class="card" style="width: 75%;margin-left: auto;margin-right: auto;">
+    <div class="card-body">
+        <h5 class="card-header"><a href="{{hit['_source']['link']}}">{{ hit['_source']['title'] }}</a></h5>
+      <h5 class="card-title">{{hit['_source']['date_published']}}</h5>
+      <p class="card-text">{{hit['_source']['answer_description']}}</p>
+      <a href="{{hit['_source']['link']}}" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+  <br> -->
+{% endfor %}
+{% else %}
+<br><br>
+<center><div class="search-card-text"><h3>Sorry! We don't have the answer to this query</h3></div></center>
+{% endif %}
+
+
+    <script src="{{url_for('static', filename='js/script.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>function redirect(){
+        const s_item= $("#search_item").val();
+        let pre="/search/";
+        
+
+        var loan = document.getElementById("loan");
+        var investment = document.getElementById("investment");
+        var remedies = document.getElementById("remedies");
+        var emi = document.getElementById("emi");
+        var s="";
+
+        if(loan.checked==true)
+        {
+          s=s.concat(" loan ");
+        }
+        if(emi.checked==true)
+        {
+          s=s.concat(" emi ");
+        }
+        if(investment.checked==true)
+        {
+          s=s.concat(" investment ");
+        }
+        if(remedies.checked==true)
+        {
+          s=s.concat(" remedies ");
+        }
+
+        let url_req = pre.concat(s_item);
+        let final = url_req.concat(s);
+        window.location = final;
+        
+        }
+
+        </script>
+</body>
+</html>
