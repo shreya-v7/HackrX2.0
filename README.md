@@ -42,7 +42,6 @@ python searchES_Flask_api.py
 - [x] Implementation of search facet: Users have been provided with a few very commonly searched words in the form of checkboxes. They need not necessarily type out a search query and can just select the checkboxes to make popular searches. However, if required, the search bar and the checkboxes can be used in combination to make the queries.
 - [x] Implementation of fuzzy search: As shown in the last query ('child paln'), typos in the search yield results as well. We have implemented the feature to a great extent however there is scope for enhancement in the future.
 
-
 # BLOCK DIAGRAM 
 <img src="https://user-images.githubusercontent.com/51106967/126855376-f017660e-b90b-400d-8deb-51b893bc7cdd.png" width="65%">
 
